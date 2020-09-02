@@ -31,21 +31,9 @@ class TokenApp:
             "password" : "{password}".format(password=self.password),
             "code" : "",
         }
-
-        # proxy = "http://mygs-mamengping:mengping123@https://app.agile.com.cn"
-        # proxy_py = urllib.request.ProxyHandler({'https': proxy})  # 设置python认识的代理：默认为null
-        # opener = urllib.request.build_opener(proxy_py)   # 建立
-        # urllib.request.install_opener(opener)     # 运行代理
-        # r = urllib.request.urlopen("https://app.agile.com.cn")
-        proxies = {
-                   "https": "https://mygs-mamengping:mengping123@app.agile.com.cn",
-                   }
-        # html = requests.get("https://www.baidu.com/", proxies=proxies)
-
         url = "{url}".format(url=inner_login_url)
         session = requests.session()
         req = session.post(url=url, data=data, headers=header, allow_redirects=False, verify=False)
-        # req1 = session.post(url=url, data=data, headers=header, proxies=proxies, allow_redirects=False, verify=False)
         print(req)
         if req.status_code == 302:
             flag = 'success'

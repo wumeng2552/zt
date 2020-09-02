@@ -156,5 +156,5 @@ class GetWorkflowId:
 
 
 if __name__ == "__main__":
-    s = GetWorkflowId("yuexiu", "beta", "罗湖公司四部", "blacklist", "locking")
+    s = GetWorkflowId("", "", "", "blacklist", "locking")
     s.change_supplier_status()
