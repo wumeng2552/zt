@@ -31,6 +31,7 @@ class TokenApp:
             "password" : "{password}".format(password=self.password),
             "code" : "",
         }
+
         url = "{url}".format(url=inner_login_url)
         session = requests.session()
         req = session.post(url=url, data=data, headers=header, allow_redirects=False, verify=False)
@@ -64,6 +65,6 @@ class TokenApp:
 
 
 if __name__ == "__main__":
-    s = TokenApp("yuexiu", "beta", "sytest", "cz@123456")
+    s = TokenApp("", "", "", "")
     s.login_app_url()
 
