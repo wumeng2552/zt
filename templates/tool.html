@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load staticfiles %}
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/tool.css' %}">
+        <script type="text/javascript" src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/login.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/kc_workflow.js' %}"></script>
+    </head>
+    <body>
+        <div class="el-col el-col-6" style="padding-left: 15px; padding-right: 15px; padding-top: 15px; padding-bottom:15px; ">
+            <div class="grid-content bg-purple">
+                <div class="el-card box-card">
+                    <div class="el-card__header">
+                        <div class="clearfix"><span style="line-height: 36px; font-size: x-large;">登录移动端</span></div>
+                    </div>
+                    <div class="el-card__body">
+                        <div class="text item">
+                            <div>
+                                <div class="form-item form-item-phone">
+                                    <div class="item-input-wrap el-input-group__prepend ">tenantcode</div>
+                                    <select autocomplete="off" placeholder="租户"  validateevent="true" class="el-input__inner el-input-group__prepend " id="tenantcode" required >
+                                        <option value="yuexiu">yuexiu</option>
+                                        <option value="agile">agile</option>
+                                        <option value="lxjs">lxjs</option>
+                                    </select>
+                                </div>
+                            <div>
+                                <div class="form-item form-item-phone">
+                                    <div class="item-input-wrap el-input-group__prepend">environment</div>
+                                    <select autocomplete="off" placeholder="环境"  rows="2" validateevent="true" class="el-input__inner el-input-group__prepend" id="environment" required >
+                                        <option value="beta">beta</option>
+                                        <option value="test">test</option>
+                                        <option value="yuexiutest">yuexiu_test</option>
+                                        <option value="agiletest">agile_test</option>
+                                        <option value="lxjsshengchan">lxjs_shengchan</option>
+                                    </select>
+                                </div>
+                                <div class="form-item form-item-phone">
+                                    <div class="item-input-wrap el-input-group__prepend">user</div>
+                                    <input autocomplete="off" placeholder="用户名" type="text" rows="2" validateevent="true" class="el-input__inner el-input-group__prepend" id="user" required >
+                                </div>
+                                <div class="form-item form-item-phone">
+                                    <div class="item-input-wrap el-input-group__prepend">password</div>
+                                    <input autocomplete="off" placeholder="密码" type="text" rows="2" validateevent="true" class="el-input__inner el-input-group__prepend" id="password" required >
+                                </div>
+                            </div>
+                            </div>
+                        <div><button onclick="app_login()" type="button" class="el-button el-button--info el-button--large" style="width: 100%;">
+                            <span style="font-size: 16px;">登录</span>{% csrf_token %}
+                        </button>
+                        </div>
+                    </div>
+                </div>
+                     </div>
+                 </div>
+             </div>
+        <div class="el-col el-col-6" style="padding-left: 15px; padding-right: 15px; padding-top: 15px; padding-bottom:15px; ">
+            <div class="grid-content bg-purple">
+                <div class="el-card box-card">
+                    <div class="el-card__header">
+                        <div class="clearfix"><span style="line-height: 36px; font-size: x-large;">修改考察K2状态</span></div>
+                    </div>
+                    <div class="el-card__body">
+                        <div class="text item">
+                            <div>
+                                <div class="form-item form-item-phone">
+                                    <div class="item-input-wrap el-input-group__prepend ">tenantcode</div>
+                                    <select autocomplete="off" placeholder="租户"  validateevent="true" class="el-input__inner el-input-group__prepend " id="tenantcode" required >
+                                        <option value="yuexiu">yuexiu</option>
+{#                                        <option value="agile">agile</option>#}
+                                    </select>
+                                </div>
+                            <div>
+                                <div class="form-item form-item-phone">
+                                    <div class="item-input-wrap el-input-group__prepend">environment</div>
+                                    <select autocomplete="off" placeholder="环境"  rows="2" validateevent="true" class="el-input__inner el-input-group__prepend" id="environment" required >
+                                        <option value="beta">beta</option>
+                                        <option value="test">test</option>
+{#                                        <option value="yuexiutest">yuexiu_test</option>#}
+{#                                        <option value="agiletest">agile_test</option>#}
+                                    </select>
+                                </div>
+                                <div class="form-item form-item-phone">
+                                    <div class="item-input-wrap el-input-group__prepend">title</div>
+                                    <input autocomplete="off" placeholder="考察标题" type="text" rows="2" validateevent="true" class="el-input__inner el-input-group__prepend" id="title" required >
+                                </div>
+                                <div class="form-item form-item-phone">
+                                    <div class="item-input-wrap el-input-group__prepend">businesstype</div>
+                                    <select autocomplete="off" placeholder="考察类型"  rows="2" validateevent="true" class="el-input__inner el-input-group__prepend" id="businessType" required >
+                                        <option value="">请选择</option>
+                                        <option value="supplier_real_inspect">单个现场考察</option>
+                                        <option value="supplier_qualification_inspect">单个资质考察</option>
+                                        <option value="supplier_real_batch_inspect">批量现场考察</option>
+                                        <option value="supplier_qualification_batch_inspect">批量资质考察</option>
+                                    </select>
+                                </div>
+                            </div>
+                            </div>
+                        <div>
+                            <button onclick="kc_workflow('locking')" type="button"  class="el-button el-button--info el-button--large" style="...">
+                                <span style="font-size: 16px;">提交</span>{% csrf_token %}
+                            </button>
+                            <button onclick="kc_workflow('agree')" type="button"  class="el-button el-button--info el-button--large" style="...;">
+                                <span style="font-size: 16px;">通过</span>{% csrf_token %}
+                            </button>
+                            <button onclick="kc_workflow('unlock')" type="button"  class="el-button el-button--info el-button--large" style="...">
+                                <span style="font-size: 16px;">撤回</span>{% csrf_token %}
+                            </button>
+                            <button onclick="kc_workflow('invalid')" type="button"  class="el-button el-button--info el-button--large" style="float: right;">
+                                <span style="font-size: 16px;">作废</span>{% csrf_token %}
+                            </button>
+                        </button>
+                        </div>
+                    </div>
+                </div>
+                     </div>
+                 </div>
+             </div>
+        <div class="el-col el-col-6" style="padding-left: 15px; padding-right: 15px; padding-top: 15px; padding-bottom:15px; ">
+            <div class="grid-content bg-purple">
+                <div class="el-card box-card">
+                    <div class="el-card__header">
+                        <div class="clearfix"><span style="line-height: 36px; font-size: x-large;">修改供应商K2状态</span></div>
+                    </div>
+                    <div class="el-card__body">
+                        <div class="text item">
+                            <div>
+                                <div class="form-item form-item-phone">
+                                    <div class="item-input-wrap el-input-group__prepend ">tenantcode</div>
+                                    <select autocomplete="off" placeholder="租户"  validateevent="true" class="el-input__inner el-input-group__prepend " id="tenantcode" required >
+                                        <option value="yuexiu">yuexiu</option>
+{#                                        <option value="agile">agile</option>#}
+                                    </select>
+                                </div>
+                            <div>
+                                <div class="form-item form-item-phone">
+                                    <div class="item-input-wrap el-input-group__prepend">environment</div>
+                                    <select autocomplete="off" placeholder="环境"  rows="2" validateevent="true" class="el-input__inner el-input-group__prepend" id="environment" required >
+                                        <option value="beta">beta</option>
+                                        <option value="test">test</option>
+{#                                        <option value="yuexiutest">yuexiu_test</option>#}
+{#                                        <option value="agiletest">agile_test</option>#}
+                                    </select>
+                                </div>
+                                <div class="form-item form-item-phone">
+                                    <div class="item-input-wrap el-input-group__prepend">supplier/title</div>
+                                    <input autocomplete="off" placeholder="供应商名称或者垄断报备标题" type="text" rows="2" validateevent="true" class="el-input__inner el-input-group__prepend" id="supplier_name" required >
+                                </div>
+                                <div class="form-item form-item-phone">
+                                    <div class="item-input-wrap el-input-group__prepend">operation</div>
+                                    <select autocomplete="off" placeholder="操作类型"  rows="2" validateevent="true" class="el-input__inner el-input-group__prepend" id="operation" required >
+                                        <option value="">请选择</option>
+                                       <option value="monopoly_approve">垄断报备</option>
+                                        <option value="extentStore">信息变更</option>
+                                        <option value="lock">锁定供应商</option>
+                                        <option value="blacklist">拉黑</option>
+                                        <option value="warn">警告</option>
+                                    </select>
+                                </div>
+                            </div>
+                            </div>
+                        <div>
+                            <button onclick="supplier_workflow('locking')" type="button"  class="el-button el-button--info el-button--large" style="...">
+                                <span style="font-size: 16px;">提交</span>{% csrf_token %}
+                            </button>
+                            <button onclick="supplier_workflow('agree')" type="button"  class="el-button el-button--info el-button--large" style="...;">
+                                <span style="font-size: 16px;">通过</span>{% csrf_token %}
+                            </button>
+                            <button onclick="supplier_workflow('unlock')" type="button"  class="el-button el-button--info el-button--large" style="...">
+                                <span style="font-size: 16px;">撤回</span>{% csrf_token %}
+                            </button>
+                            <button onclick="supplier_workflow('invalid')" type="button"  class="el-button el-button--info el-button--large" style="float: right;">
+                                <span style="font-size: 16px;">作废</span>{% csrf_token %}
+                            </button>
+                        </button>
+                        </div>
+                    </div>
+                </div>
+                     </div>
+                 </div>
+             </div>
+    </body>
+</html>
