@@ -35,50 +35,8 @@ class ReadConfig:
             sections_value = None
         return sections_value
 
-    def read_server_config(self, server_name_option):
-        server_config_path = config_path + "\\server_config.ini"
-        # print("当前读取文件所在路径：",db_config_path)
-        self.conf.read(server_config_path, encoding='utf-8')
-        try:
-            sections_value = {i[0]: i[1] for i in self.conf.items(server_name_option)}
-            # print("当前{0}数据库信息：{1}".format(db_name_option,sections_value))
-        except Exception as  e:
-            # print("当前读取{0}数据库信息报错".format(db_name_option))
-            sections_value = None
-            # print(e)
-        return sections_value
-
-    def read_redis_config(self, redis_name_option):
-        redis_config_path = config_path + "\\redis_config.ini"
-        # print("当前读取文件所在路径：",db_config_path)
-        self.conf.read(redis_config_path, encoding='utf-8')
-        try:
-            sections_value = {i[0]: i[1] for i in self.conf.items(redis_name_option)}
-            # print("当前{0}数据库信息：{1}".format(db_name_option,sections_value))
-        except Exception as  e:
-            # print("当前读取{0}数据库信息报错".format(db_name_option))
-            sections_value = None
-            # print(e)
-        return sections_value
-
-    def read_common_config(self, mould_name, option):
-        common_path = config_path + "\\common_config.ini"
-        # print("当前读取文件所在路径：",common_path)
-        self.conf.read(common_path)
-        try:
-            value = self.conf.get(mould_name, option)
-            # print("当前读取common配置信息：",value)
-        except Exception as e:
-            value = None
-            # print("读取common_config文件报错：",e)
-        return value
-
     def read_url(self, moudl_name, option):
-        '''
-        :param moudl_name:
-        :param option: test：匹配测试环境地址；online：匹配线上环境地址；uat：匹配UAT环境地址
-        :return: 读取到则返回url地址，未读取到则返回None
-        '''
+
         url_path = config_path + "\\url.ini"
         # print("当前读取文件所在路径：",url_path)
         self.conf.read(url_path, encoding='utf-8')
@@ -105,14 +63,6 @@ class ReadConfig:
         f.write(str(txt_str))
         f.close()
 
-    def read_user_verify_config(self, user_option):
-        verify_config_path = config_path + "\\user_verify.ini"
-        self.conf.read(verify_config_path, encoding='utf-8')
-        try:
-            sections_value = {i[0]: i[1] for i in self.conf.items(user_option)}
-        except Exception as  e:
-            sections_value = None
-        return sections_value
 
 
     def read_url_config( self, url_name_option ):
